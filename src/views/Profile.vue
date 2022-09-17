@@ -1,5 +1,7 @@
 <template>
   <form class="form-widget" @submit.prevent="updateProfile">
+    <AvatarUpload v-model:path="avatar_url" @upload="updateProfile" />
+
     <div>
       <label for="email">Email</label>
       <input
@@ -9,6 +11,7 @@
         disabled
       />
     </div>
+
     <div>
       <label for="username">Name</label>
       <input id="username" v-model="username" type="text" />
@@ -35,6 +38,8 @@
 import { supabase } from '../supabase';
 import { useUserStore } from '../stores/user';
 import { onMounted, ref } from 'vue';
+
+import AvatarUpload from '../components/AvatarUpload.vue';
 
 const userStore = useUserStore();
 
